@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 
 import EditTodo from "./editTodo";
-
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
@@ -9,7 +9,7 @@ const ListTodos = () => {
 
   const deleteTodo = async id => {
     try {
-      const deleteTodo = await fetch(`http://localhost:5000//TodoTraverse/${id}`, {
+      const deleteTodo = await fetch(`${API_URL}/TodoTraverse/${id}`, {
         method: "DELETE"
       });
 
@@ -21,7 +21,7 @@ const ListTodos = () => {
 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/TodoTraverse");
+      const response = await fetch(`${API_URL}/TodoTraverse`);
       const jsonData = await response.json();
 
       setTodos(jsonData);
